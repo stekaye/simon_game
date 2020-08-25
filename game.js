@@ -5,6 +5,7 @@ let gameStarted = false;
 let level = 0;
 let ind = 0;
 let gamePattern = [];
+let record = 0;
 
 function nextSequence() {
 
@@ -25,9 +26,7 @@ $(".btn").on('click', function(event) {
   userClickedPattern.unshift(userChosenColour);
   playSound(userChosenColour);
   animatePress(userChosenColour)
-
   gameLogic(userChosenColour)
-
 })
 
 //Function to play sound using parameter which will be body of src.
@@ -54,46 +53,47 @@ $(document).on('keypress', function() {
 function gameLogic(color) {
 
   if (color === gamePattern[ind] && ind < gamePattern.length) {
-    
     ind++
-
   } else {  
-      gamePattern = [];
-      userClickedPattern = [];
-      level = 0;
-      gameStarted = false
-      playSound("wrong")
-      $('body').toggleClass('game-over')
-      setTimeout(() => {
-        $('body').toggleClass('game-over');
-      }, 500);
-      setTimeout(() => {
-        $('body').toggleClass('game-over');
-      }, 1000);
-      setTimeout(() => {
-        $('body').toggleClass('game-over');
-      }, 2000);
-      $('#level-title').text('GAME OVER!')
-      setTimeout(() => {
-        $('#level-title').text('Press Any Key to Start')
-      }, 2000);
-      return;
+    gameOver();
   }
-  
-  startOver();
-  
-}
 
-
-function startOver() {
   if (ind === gamePattern.length && gameStarted) {
     userClickedPattern = [];
     level++;
+    if (level > record) {
+      $('#current-record').text('Current Record: Level ' + level)
+      record = level;
+    }
     ind = 0;
     $('#level-title').text('Level: ' + level)
     setTimeout(() => {
       nextSequence()
     }, 2000); 
   }
+
+}
+
+function gameOver() {
+  gamePattern = [];
+  userClickedPattern = [];
+  level = 0;
+  gameStarted = false
+  playSound("wrong")
+  $('body').toggleClass('game-over')
+  setTimeout(() => {
+    $('body').toggleClass('game-over');
+  }, 500);
+  setTimeout(() => {
+    $('body').toggleClass('game-over');
+  }, 1000);
+  setTimeout(() => {
+    $('body').toggleClass('game-over');
+  }, 2000);
+  $('#level-title').text('GAME OVER!')
+  setTimeout(() => {
+    $('#level-title').text('Press Any Key to Start')
+  }, 2000);
+  return;
 }
 
