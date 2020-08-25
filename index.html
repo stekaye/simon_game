@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Simon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+</head>
+
+<body class="body">
+  <h1 id="level-title">Press Any Key to Start</h1>
+  
+  <div class="container">
+    
+    <div lass="row">
+
+      <div type="button" id="green" class="btn green">
+        <audio src="sounds/green.mp3" type="audio/mp3"></audio>
+      </div>
+
+      <div type="button" id="red" class="btn red">
+        <audio src="sounds/red.mp3" type="audio/mp3"></audio>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div type="button" id="yellow" class="btn yellow">
+        <audio src="sounds/yellow.mp3" type="audio/mp3"></audio>
+      </div>
+
+      <div type="button" id="blue" class="btn blue">
+        <audio src="sounds/blue.mp3" type="audio/mp3"></audio>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script src="game.js"></script>
+</body>
+
+</html>
